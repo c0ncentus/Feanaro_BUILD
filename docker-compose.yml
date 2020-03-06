@@ -1,0 +1,22 @@
+version: "3.7"
+services:
+  app:
+    container_name: feanaro_api
+    depends_on: 
+      - mongo
+    restart: always
+    build: ./
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/app
+    links:
+      - mongo
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: Lindale
+      MONGO_INITDB_ROOT_PASSWORD: YeComeSonOf3Art!
