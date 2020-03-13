@@ -1,15 +1,20 @@
 version: "3.7"
 services:
-  app:
+  web:
+    container_name: lindale
+    depends_on:
+      - feanaro_api
+      - mongo
+    restart: always
+    build: ./lindale
+    image: lindale 
+  api:
     container_name: feanaro_api
     depends_on: 
       - mongo
     restart: always
-    build: ./
-    ports:
-      - "8080:8080"
-    volumes:
-      - .:/app
+    build: ./feanaro_api
+    image: feanaro_api
     links:
       - mongo
   mongo:
