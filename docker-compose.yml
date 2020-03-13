@@ -4,20 +4,20 @@ services:
     container_name: lindale
     depends_on:
       - feanaro_api
-      - mongo
+      - bdd
     restart: always
     build: ./lindale
     image: lindale 
   api:
     container_name: feanaro_api
     depends_on: 
-      - mongo
+      - bdd
     restart: always
     build: ./feanaro_api
     image: feanaro_api
     links:
-      - mongo
-  mongo:
+      - bdd
+  bdd:
     container_name: mongo
     image: mongo
     ports:
